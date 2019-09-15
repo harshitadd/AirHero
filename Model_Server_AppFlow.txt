@@ -1,0 +1,100 @@
+Flow of the application: 
+
+Sensor is moved around - and wherever the VOC spikes above a given threshold value - The sensor beeps and the user is prompted to take a photograph(s). [1]
+The photo is uploaded on the server. 
+The value of the VOC content from the server is also sent to the server 
+Both the photo and label (VOC content) are added to a separate database -- This will be the database that our model will be trained on.
+If this is the Naive User activity of the Android App then: 
+The App will now ask the user the following things 
+How many windows does this room have ? [2] (n)
+Is there a source of mechanical ventilation in the room ? If yes, Specify how many. (m)
+These responses will be sent to the server 
+Weather API calls will be made to obtain wind speed and wind direction (w,d)
+All these will be used to output a list of recommendations (Python program that will run on the server along with the model inference - Algorithm specified below)
+These recommendations + Label of the image will be sent to the Android App and displayed in the form of a report.
+ b. The Server will also run the inference on the image that has been uploaded and       that will be returned as the label.     
+ 
+
+
+Recommender System: 
+
+Since the object recommender is not a usable option (the lack of an appropriate dataset) - We can use the following naive recommender: 
+
+Let the number of windows be = n 
+Let the percentage of sunlight in a room be = s (in percent)
+Let the VOC content recorded by the sensor be = v 
+Let the source(s) of mechanical ventilation in the room be =  m
+Let the Wind speed be = w (km/h)
+Let the Wind direction be = d (degrees)
+Let the age of the article = a (years)
+
+Data Structure : Decision Tree 
+
+Algo:
+recommend(char ch)
+{
+	if(ch==’a’):
+	{
+		check n; 
+		if(n!=0):  //if the rooms has some windows that can be used for natural ventilation	
+		{
+			check if(w*d > air_dispersion_threshold_value) 
+{
+/*only when the air dispersion  (w*d) outside is high enough, should we suggest natural ventilation, otherwise, the outside Air Quality + VOC content could negatively affect the VOC conc inside the house (eg: for a user in New Delhi) */
+
+	if (v  > 50)
+		t = 30 minutes;  //t = how many minutes the user should allow ventilation
+	if( v > 100)
+		t = 60 minutes;
+	...
+  
+	cout<<”Open the windows for”<<t<<”minutes”;
+}
+else
+{
+	//(w*d) is too low or if there are no windows 
+	if(m ==1 )
+		t = 60 minutes;
+	if(m ==2)
+		t= 30 minutes;
+	…
+	cout<<”Use mechanical ventilation for<<”t<<”minutes”;
+
+}
+
+}
+
+}
+if(ch==’b’)
+{
+	//if it older than a year - most prob furniture components or varnishes will be a source
+	//Will add recommendations according to https://blog.paleohacks.com/toxins-in-furniture/
+}
+} 
+
+if (v>threshold_value age<1 year): // high VOC content with new items 
+	recommend(a)
+/*Mostly happen with dry cleaning, cleaning supplies, etc -- stuff that can be moved    around easily*/
+else
+	//high VOC content with older items 
+	recommend(b)
+	
+}
+ 
+
+
+
+
+
+Can Check if we can implement: 
+Can a buzzer module be added to the handheld device so that it beeps as the VOC content in a region is increasing : 
+VOC >=50:
+	buzzer_frequency = 2 bps (bps = beeps per second)
+VOC >=100:
+	buzzer_frequency = 4 bps (bps = beeps per second)
+VOC >=150:
+	buzzer_frequency = 8 bps (bps = beeps per second)
+
+Can a module that estimates the amount of sunlight in a room be added to the  handheld device because with the rover it will be very inconvenient for the user to input the number of windows in each and every area where there is a VOC spike (for a commercial place)
+
+
