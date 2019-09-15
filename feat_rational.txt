@@ -4,7 +4,7 @@ https://iaqscience.lbl.gov/voc-cleaning
 ##SMELL 
 https://branchbasics.com/blog/vocs-and-how-they-affect-your-health/
 
-Reccomender - 
+Recommender - 
 https://branchbasics.com/blog/nontoxic-air-fresheners-remove-odors-naturally/
 
 ##VENTILATION 
@@ -35,6 +35,48 @@ https://foobot.io/guides/threshold-limit-values-volatile-organic-compounds.php
 
 MOST IMP - https://www.kaggle.com/c/imaterialist-challenge-furniture-2018/data
 http://homepages.inf.ed.ac.uk/rbf/CVonline/Imagedbase.htm#object
+
+MODEL ARCH: 
+
+Sources : https://towardsdatascience.com/transfer-learning-from-pre-trained-models-f2393f124751
+		  https://towardsdatascience.com/a-comprehensive-hands-on-guide-to-transfer-learning-with-real-world-applications-in-deep-learning-212bf3b2f27a
+		  https://keras.io/applications/
+
+
+
+
+
+
+
+IMAGE NET -
+rocking chair 
+folding chair 
+barber chair 
+dining table 
+pool table 
+day bed, couch 
+paintbrush 
+hair spray 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
