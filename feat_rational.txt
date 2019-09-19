@@ -44,11 +44,8 @@ Sources : https://towardsdatascience.com/transfer-learning-from-pre-trained-mode
 
 
 
+IMAGE NET 
 
-
-
-
-IMAGE NET -
 rocking chair 
 folding chair 
 barber chair 
@@ -57,10 +54,6 @@ pool table
 day bed, couch 
 paintbrush 
 hair spray 
-
-
-
-
 
 
 
