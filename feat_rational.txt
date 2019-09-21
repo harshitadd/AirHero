@@ -43,8 +43,52 @@ Sources : https://towardsdatascience.com/transfer-learning-from-pre-trained-mode
 		  https://keras.io/applications/
 
 
+Architecture choice : https://medium.com/zylapp/review-of-deep-learning-algorithms-for-object-detection-c1f3d437b852
 
-IMAGE NET 
+MORE IMP : https://cv-tricks.com/object-detection/faster-r-cnn-yolo-ssd/
+
+Architecture Rationale: 
+
+Metric 
+The object detection challenge is, at the same time, a regression and a classification task. First of all, to assess the spatial precision we need to remove the boxes with low confidence (usually, the model outputs many more boxes than actual objects). Then, we use the Intersection over Union (IoU) area, a value between 0 and 1. It corresponds to the overlapping area between the predicted box and the ground-truth box. The higher the IoU, the better the predicted location of the box for a given object. Usually, we keep all bounding box candidates with an IoU greater than some threshold.
+
+In binary classification, the Average Precision (AP) metric is a summary of the precision-recall curve, details are provided here. The commonly used metric used for object detection challenges is called the mean Average Precision (mAP). It is simply the mean of the Average Precisions computed over all the classes of the challenge. The mAP metric avoids to have extreme specialization in few classes and thus weak performances in others.
+
+
+RCNN - Region based -- Localise the object along the same regional similarity 
+
+
+The R-CNN model (R. Girshick et al., 2014) combines the selective search method to detect region proposals and deep learning to find out the object in these regions. Each region proposal is resized to match the input of a CNN from which we extract a 4096-dimension vector of features. The features vector is fed into multiple classifiers to produce probabilities to belong to each class. Each one of these classes has a SVM classifier trained to infer a probability to detect this object for a given vector of features. This vector also feeds a linear regressor to adapt the shapes of the bounding box for a region proposal and thus reduce localization errors.
+
+
+FAST RCNN 
+
+A main CNN with multiple convolutional layers is taking the entire image as input instead of using a CNN for each region proposals (R-CNN). Region of Interests (RoIs) are detected with the selective search method applied on the produced feature maps. Formally, the feature maps size is reduced using a RoI pooling layer to get valid Region of Interests with fixed heigh and width as hyperparameters. Each RoI layer feeds fully-connected layers¹ creating a features vector. The vector is used to predict the observed object with a softmax classifier and to adapt bounding box localizations with a linear regressor.
+
+FASTER RCNN 
+
+Region proposals detected with the selective search method were still necessary in the previous model, which is computationally expensive. S. Ren and al. (2016) have introduced Region Proposal Network (RPN) to directly generate region proposals, predict bounding boxes and detect objects. The Faster Region-based Convolutional Network (Faster R-CNN) is a combination between the RPN and the Fast R-CNN model.
+
+
+Faster R-CNN uses RPN to avoid the selective search method, it accelerates the training and testing processes, and improve the performances. The RPN uses a pre-trained model over the ImageNet dataset for classification and it is fine-tuned on the PASCAL VOC dataset. Then the generated region proposals with anchor boxes are used to train the Fast R-CNN. This process is iterative.
+
+RFCN -- Fully Convolutional :: used for both detection as well as localisation of the position of the detected object 
+
+A ResNet-101 model takes the initial image as input. The last layer outputs feature maps, each one is specialized in the detection of a category at some location. 
+
+
+YOLO 
+Initially, the model takes an image as input. It divides it into an SxS grid. Each cell of this grid predicts B bounding boxes with a confidence score. This confidence is simply the probability to detect the object multiply by the IoU between the predicted and the ground truth boxes.
+
+Will be using YOLO because of the Speed and computational inexpense 
+
+-- Graphic config: Intel HD Graphics 620.
+
+SSD - Single shot detector 
+
+The SSD model uses extra feature layers from different feature maps of the network in order to increase the number of relevant bounding boxes. 
+
+IMAGE NET : 500 IMAGES on average 
 
 rocking chair 
 folding chair 
@@ -52,8 +96,49 @@ barber chair
 dining table 
 pool table 
 day bed, couch 
-paintbrush 
 hair spray 
+
+PASCAL VOC : https://pjreddie.com/media/files/VOC2012_doc.pdf : 300 max 
+bottle
+chair
+dining table 
+sofa
+
+COCO : https://tech.amikelive.com/node-718/what-object-categories-labels-are-in-coco-dataset/ 
+
+door
+desk 
+chair		
+couch	
+bed	
+dining table	
+window
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
