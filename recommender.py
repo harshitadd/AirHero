@@ -8,7 +8,7 @@ def weather():
 def sunlight():
 
     s=0
-    if(s == 0):
+    if(s == 0): 
         s_map = 'Low'
     elif(s == 1):
         s_map = 'Moderate'
@@ -29,7 +29,7 @@ def app_data():
         a_map = "More than 2 years"
     else:
         a_map = "Less than 2 years"
-    #return a age of the article, m - mech ventiliation, n = number of windows  
+     #m - mech ventiliation, n = number of windows  
     return a,m,n,a_map
 
 def VOC():
@@ -120,7 +120,6 @@ def report(w,h,s_map,a_map,m,n,v):
     print("Wind speed is "+ str(w) +" Km/h")
     print("Humidity is "+ str(h) +" %")
     print("Sunlight is "+ s_map)
-    print("Age of the Article is "+ a_map)
     print("Number of mechanical ventiliation sources "+ str(m))
     print("Number of windows in the room is "+ str(n))
     print("VOC value detected from the Handheld device is "+ str(v) +" ppm")
