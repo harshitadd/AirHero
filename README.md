@@ -5,3 +5,5 @@ Starter codes for:
 to the absence of an existing training corpus)
 
 # Winning Submission at the Singapore India Hackathon 2019 
+
+P.S :  This only highlights my contribution to the project, and does not list/source the multidimensional aspects of the solution that our team had developed. 
